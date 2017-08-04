@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <title>Code Lab</title>
+    <script src="https://unpkg.com/vue@2.4.2"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img class="img-responsive" style="width:36px;margin-top:-13px;" src="pp.jpg" alt="Profile Picture">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">About me</a></li>
+
+                <li><a href="#">To contact</a></li>
+
+            </ul>
+            <form class="navbar-form navbar-right">
+                <div class="dropdown ">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Implementations
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="AseelSaad.html"> Home</a></li>
+                        <li><a href="secondHomeWork.html">Second HomeWork</a></li>
+                        <li><a href="api.html">Using API</a></li>
+                    </ul>
+                </div>
+
+            </form>
+        </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+</nav>
+<br><br><br><br><br><br>
+<div id="root">
+
+    <ul>
+        <li v-for="(name, index) in names">index = {{index}} - value = {{name}}<br><button class="btn  btn-danger btn-xs" @click="names.splice(index,1)">Delete</button></li>
+
+    </ul>
+
+    <!-- Using Vue Js -->
+    <input type="text" placeholder="enter name" id="inp" v-model="input" @keyup.13="addNewName">
+    <button type="button" v-on:click="addNewName">Add By Using Vuejs</button>
+
+    <!-- Using Js -->
+    <button type="button" onclick="AddName()">Add By Using JS</button>
+
+</div>
+
+<script>
+    var app = new Vue({
+        el: "#root",
+        data:{
+            names:["Marwan","Jon","Doe","Yousif"],
+            input:"",
+        },
+        methods: {
+            addNewName:function () {
+                // alert(this.input);
+                if(this.input == ''){
+                    alert("pleas, enter something");
+                }
+                else{
+                    this.names.push(this.input);
+                    this.input  =  '';
+                }
+            },
+        },
+        // created: function() {
+        //    console.log("hh");
+        // },
+    });
+    // if i want to use function outside of vue instance
+    function AddName() {
+        var entered_name  = document.getElementById("inp");
+        if(entered_name.value == ''){
+            alert("pleas, enter something");
+        }
+        else{
+            app.names.push(entered_name.value);
+            entered_name.value   =  '';
+        }
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
